@@ -1,6 +1,6 @@
 #![cfg_attr(
-  all(not(debug_assertions), target_os = "windows"),
-  windows_subsystem = "windows"
+all(not(debug_assertions), target_os = "windows"),
+windows_subsystem = "windows"
 )]
 
 use std::thread;
@@ -14,7 +14,7 @@ fn main() {
     .create_window("macropad", url, move |window_builder, webview_attr| {
       let window = window_builder
         .title("Macro Pad")
-        .inner_size(600.0, 600.0)
+        .inner_size(400.0, 400.0)
         .transparent(true)
         .always_on_top(true)
         .center()
@@ -48,7 +48,7 @@ fn main() {
         loop {
           let event = rx.recv().unwrap();
           println!("event: {}", event);
-          
+
           visible = !visible;
 
           if visible {

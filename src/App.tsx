@@ -1,30 +1,49 @@
-import tw from 'twin.macro'
+import tw from "twin.macro"
 
 const Backdrop = tw.div`
 	flex items-center justify-center
 	min-h-screen text-white bg-transparent
 `
 
-const range = (n: number) => Array.from({length: n}).map((_, n) => n)
+const rows = 9
+const range = (n: number) => Array.from({ length: n }).map((_, n) => n)
+
+const toXY = (n: number): [x: number, y: number] => [n % rows, Math.floor(n / rows)]
 
 function App() {
   return (
     <Backdrop data-tauri-drag-region>
       <div tw="grid grid-cols-9 gap-3" data-tauri-drag-region>
-        {range(81).map((n) => (
-          <div
-            key={n}
-            tw="bg-white w-10 h-10 rounded-lg cursor-pointer hover:bg-violet-200"
-            css={{
-              background:
-                'radial-gradient(circle, hsla(195, 94%, 67%, 1) 45%, hsla(0, 0%, 88%, 1) 100%)',
+        {range(rows * rows).map((n) => {
+          const [x, y] = toXY(n)
 
-              '&:hover': {
-                background: 'hsla(206, 94%, 67%, 1)',
-              },
-            }}
-          />
-        ))}
+          return (
+            <div
+              key={n}
+              tw="flex items-center justify-center bg-white w-8 h-8 rounded-lg cursor-pointer hover:bg-violet-200"
+              css={{
+                background:
+                  "radial-gradient(circle, hsla(195, 94%, 67%, 1) 45%, hsla(0, 0%, 88%, 1) 100%)",
+
+                "&:hover": {
+                  background: "hsla(206, 94%, 67%, 1)"
+                },
+
+                ...((x === 8 || y === 0) && {
+                  background: "pink",
+
+                  "&:hover": {
+                    background: "darkpink"
+                  }
+                }),
+
+                ...((x === 8 && y === 0) && { background: "transparent" })
+
+
+              }}
+            />
+          )
+        })}
       </div>
     </Backdrop>
   )
