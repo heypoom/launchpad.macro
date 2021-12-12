@@ -1,12 +1,32 @@
-import {useState} from 'react'
+import tw from 'twin.macro'
 
-import 'twin.macro'
+const Backdrop = tw.div`
+	flex items-center justify-center
+	min-h-screen text-white bg-transparent
+`
+
+const range = (n: number) => Array.from({length: n}).map((_, n) => n)
 
 function App() {
   return (
-    <div tw="flex items-center justify-center min-h-screen px-8 py-4 bg-orange-600 text-white">
-      <h1 tw="text-9xl font-medium">Poom!</h1>
-    </div>
+    <Backdrop data-tauri-drag-region>
+      <div tw="grid grid-cols-9 gap-3" data-tauri-drag-region>
+        {range(81).map((n) => (
+          <div
+            key={n}
+            tw="bg-white w-10 h-10 rounded-lg cursor-pointer hover:bg-violet-200"
+            css={{
+              background:
+                'radial-gradient(circle, hsla(195, 94%, 67%, 1) 45%, hsla(0, 0%, 88%, 1) 100%)',
+
+              '&:hover': {
+                background: 'hsla(206, 94%, 67%, 1)',
+              },
+            }}
+          />
+        ))}
+      </div>
+    </Backdrop>
   )
 }
 
