@@ -1,14 +1,11 @@
-import { useState } from 'react'
-import styled from '@emotion/react'
+import {useState} from 'react'
 
-const Container = styled.div``
+import 'twin.macro'
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <div>
-        <h1>Poom.</h1>
+    <div tw="flex items-center justify-center min-h-screen px-8 py-4 bg-orange-600 text-white">
+      <h1 tw="text-9xl font-medium">Poom!</h1>
     </div>
   )
 }
