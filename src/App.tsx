@@ -6,9 +6,12 @@ const Backdrop = tw.div`
 `
 
 const rows = 9
-const range = (n: number) => Array.from({ length: n }).map((_, n) => n)
+const range = (n: number) => Array.from({length: n}).map((_, n) => n)
 
-const toXY = (n: number): [x: number, y: number] => [n % rows, Math.floor(n / rows)]
+const toXY = (n: number): [x: number, y: number] => [
+  n % rows,
+  Math.floor(n / rows),
+]
 
 function App() {
   return (
@@ -26,20 +29,18 @@ function App() {
                   "radial-gradient(circle, hsla(195, 94%, 67%, 1) 45%, hsla(0, 0%, 88%, 1) 100%)",
 
                 "&:hover": {
-                  background: "hsla(206, 94%, 67%, 1)"
+                  background: "hsla(206, 94%, 67%, 1)",
                 },
 
                 ...((x === 8 || y === 0) && {
                   background: "pink",
 
                   "&:hover": {
-                    background: "darkpink"
-                  }
+                    background: "darkpink",
+                  },
                 }),
 
-                ...((x === 8 && y === 0) && { background: "transparent" })
-
-
+                ...(x === 8 && y === 0 && {background: "transparent"}),
               }}
             />
           )
